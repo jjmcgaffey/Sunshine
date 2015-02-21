@@ -234,8 +234,7 @@ public class ForecastFragment extends Fragment {
          */
         private String formatHighLows(double high, double low) {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            String units = settings.getString(getString(R.string.pref_units_key),
-                    getString(R.string.pref_units_default));
+            String units = settings.getString(getString(R.string.pref_units_key), getString(R.string.pref_units_default));
             if(units.equals(getString(R.string.pref_units_imperial))){
                 high = makeImperial(high);
                 low = makeImperial(low);

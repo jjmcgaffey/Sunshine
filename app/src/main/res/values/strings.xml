@@ -20,8 +20,4 @@
     <string name="pref_units_default">@string/pref_units_metric</string>
     <string name="pref_units_metric">Metric</string>
     <string name="pref_units_imperial">Imperial</string>
-
-    <string name="action_share_rainbow">Rainbow</string>
-    <string name="action_share_horseshoe">Horseshoe</string>
-    <string name="action_share_moon">Moon</string>
 </resources>

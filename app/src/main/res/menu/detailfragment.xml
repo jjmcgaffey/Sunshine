@@ -2,27 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/action_share"
-        android:icon="@drawable/ic_action_share"
-        android:orderInCategory="1"
+        android:title="@string/action_share"
         app:showAsAction="always"
-        android:actionProviderClass="android.widget.ShareActionProvider">
-        <menu>
-            <item
-                android:id="@+id/action_share_rainbow"
-                android:title="@string/action_share_rainbow"
-                android:icon="@drawable/ic_action_share_rainbow"/>
-            <item
-                android:id="@+id/action_share_horseshoe"
-                android:title="@string/action_share_horseshoe"
-                android:icon="@drawable/ic_action_share_horseshoe"/>
-            <item
-                android:id="@+id/action_share_moon"
-                android:title="@string/action_share_moon"
-                android:icon="@drawable/ic_action_share_moon"/>
-        </menu>
-    </item>
-    <item android:id="@+id/action_lastshare"
-        android:orderInCategory="2"
-        app:showAsAction="always" />
-
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"/>
 </menu>
