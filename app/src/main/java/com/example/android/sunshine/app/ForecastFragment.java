@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 public class ForecastFragment extends Fragment {
 
+    private final String LOG_TAG = ForecastFragment.class.getSimpleName();
     private ArrayAdapter<String> mForecastAdapter;
 
     public ForecastFragment() {
@@ -47,6 +48,7 @@ public class ForecastFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+//        Log.d(LOG_TAG, "onCreate");
     }
 
     @Override
@@ -80,7 +82,7 @@ public class ForecastFragment extends Fragment {
         listView_forecast.setAdapter(mForecastAdapter);
         listView_forecast.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l){
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 String forecast = mForecastAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), DetailActivity.class)
                         .putExtra(Intent.EXTRA_TEXT, forecast);
@@ -90,7 +92,7 @@ public class ForecastFragment extends Fragment {
         return rootView;
     }
 
-    private void updateWeather(){
+    private void updateWeather() {
         FetchWeatherTask fetchWeather = new FetchWeatherTask();
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String location = settings.getString(getString(R.string.pref_location_key),
@@ -99,9 +101,10 @@ public class ForecastFragment extends Fragment {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         updateWeather();
+//        Log.d(LOG_TAG, "onStart");
     }
 
 
@@ -235,11 +238,10 @@ public class ForecastFragment extends Fragment {
         private String formatHighLows(double high, double low) {
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getActivity());
             String units = settings.getString(getString(R.string.pref_units_key), getString(R.string.pref_units_default));
-            if(units.equals(getString(R.string.pref_units_imperial))){
+            if (units.equals(getString(R.string.pref_units_imperial))) {
                 high = makeImperial(high);
                 low = makeImperial(low);
-            }
-            else if (!units.equals(getString(R.string.pref_units_metric))){
+            } else if (!units.equals(getString(R.string.pref_units_metric))) {
                 Log.d(LOG_TAG, "Unit type not found: " + units);
             }
 
@@ -251,8 +253,8 @@ public class ForecastFragment extends Fragment {
             return highLowStr;
         }
 
-        private double makeImperial(double temp){
-            temp = (temp*1.8)+32;
+        private double makeImperial(double temp) {
+            temp = (temp * 1.8) + 32;
             return temp;
         }
 
@@ -337,25 +339,4 @@ public class ForecastFragment extends Fragment {
         }
 
     }
-
-
-/*    public class WeatherDataParser {
-
-        /**
-         * Given a string of the form returned by the api call:
-         * http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7
-         * retrieve the maximum temperature for the day indicated by dayIndex
-         * (Note: 0-indexed, so 0 would refer to the first day).
-         */
-/*        public double getMaxTemperatureForDay(String weatherJsonStr, int dayIndex)
-                throws JSONException {
-
-            JSONObject weatherJSON = new JSONObject(weatherJsonStr);
-            JSONArray days = weatherJSON.getJSONArray("list");
-            JSONObject dayTemps = days.getJSONObject(dayIndex);
-
-            JSONObject maxTemp = dayTemps.getJSONObject("temp");
-            return maxTemp.getDouble("max");
-        }
-    }*/
 }

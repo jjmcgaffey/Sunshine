@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 public class DetailActivity extends ActionBarActivity {
 
+    private final String LOG_TAG = DetailActivity.class.getSimpleName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class DetailActivity extends ActionBarActivity {
                     .add(R.id.container, new DetailFragment())
                     .commit();
         }
-
+//        Log.d(LOG_TAG, "onCreate");
     }
 
 
